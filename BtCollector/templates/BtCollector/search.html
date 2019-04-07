@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><article>
+<div class="panel panel-default">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <thead>
+            <th class=th1>RESOURCE NAME</th>
+            <th class=th2>SIZE</th>
+            <th class=th3>SEEDER</th>
+            <th class=th4>PEER</th>
+            <th class=th5>SITE</th></thead>
+        {% for result in results %}
+            <tr>
+                <td>
+                    <div style=float:left>
+                        <a href="{{ result.source }}" target="_blank">
+                            <b>{{ result.name }}</b>
+                        </a>
+                    </div>
+                    <div style=float:right>
+                        <a href="{{ result.link }}">
+                            mag
+                        </a>
+                    </div>
+                </td>
+                <td class=tsz>{{ result.size }}</td>
+                <td class=tul>{{ result.seeder }}</td>
+                <td class=tdl>{{ result.leecher }}</td>
+                <td class=tst>{{ result.site }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-4">
+                <br>
+                <p class="text-right">Presenting <b>{{ results.count }}</b> results found for "{{ search }}".</p>
+            </div>
+        </div>
+    </div>
+</article>
+<footer><i class="fa fa-copyright"></i> 2019 Torlock - The No Fakes Torrent Site</footer>
+</body></html>
