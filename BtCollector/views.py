@@ -1,5 +1,5 @@
 from scrapyd_api import ScrapydAPI
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import BtCollector
 from time import sleep
 
@@ -18,17 +18,33 @@ scrapyd = ScrapydAPI('http://localhost:6800')
 
 last_query = ''
 
+def index(request):
+	global last_query
+	BtCollector.objects.all().delete()
+	last_query = ''
+	return render(request, 'BtCollector/bt_home.html')
+
 def search(request, search, cat):
 	global last_query
-	current_result = BtCollector.objects.filter(search = search, cat = cat)
-	if not current_result or last_query == request.path:
-		current_result.delete()
-		for spider in support_category[cat]:
-			task = scrapyd.schedule('default', spider, search = search, cat = cat)
-		sleep(10)
-	else:
+	if last_query != request.path:
 		last_query = request.path
-
+		results = BtCollector.objects.filter(search = search, cat = cat)
+		if not results:
+			for spider in support_category[cat]:
+				task = scrapyd.schedule('default', spider, search = search, cat = cat)
+			sleep(8)
+	
 	results = BtCollector.objects.filter(search = search, cat = cat).order_by('-seeder', '-leecher')
-	context = {'results': results, 'search': search}
-	return render(request, 'BtCollector/search.html', context)
+	context = {'results': results, 'search': search, 'cat': cat}
+	return render(request, 'BtCollector/bt_result.html', context)
+
+def to_search(request):
+	try:
+		search = request.GET['q']
+		cat = request.GET['cat']
+	except KeyError:
+		return redirect('/bt/')
+	if search and cat in support_category.keys():
+		return redirect('/'.join(['/bt', cat, search]))
+	else:
+		return redirect('/bt/')

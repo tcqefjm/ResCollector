@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Torrents Search</title>
+      
+    {% load static %}
+    <link rel=stylesheet href="{% static 'home_style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'icon.png' %}">
+    
+    </script>
+    
+    <meta name="theme-color" content="#ffffff">
+    
+</head>
+
+<body>
+        <div class="container-fluid" style="width: 700px;margin: auto auto; position: fixed; top: 35%; left: 27%">
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-left" role="search" method=get action="/bt/search/" name=s style="width: 540px">
+                    <div class="input-group">
+                    	
+                    	<input type="text" name="q" value="" autocomplete=off style="width:350px; border-radius:5px; vertical-align: middle;" class="search-query form-control" placeholder="Search for Anything" id="name">
+                        <span class="input-group-btn" onclick="document.forms['s'].submit();"  style="height: 40px; vertical-align: middle;">   
+                            <button class="btn btn-warning" type="button">
+                                <li class="fa fa-search">
+                                    
+                                </li>
+                            </button>
+                        </span>
+                        
+                        <select class ="select-cat" style="height: 40px; border-radius:5px; font-size: 16px; vertical-align: middle;" name="cat" id="cait">
+                            <option value="all" style="font-size: 16px;">all</option>
+                            <option value="anime" style="font-size: 16px;">anime</option>
+                            <option value="books" style="font-size: 16px;">books</option>
+                            <option value="games" style="font-size: 16px;">games</option>
+                            <option value="movies" style="font-size: 16px;">movies</option>
+                            <option value="music" style="font-size: 16px;">music</option>
+                            <option value="software" style="font-size: 16px;">software</option>
+                            <option value="tv" style="font-size: 16px;">tv</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <!-- </nav> -->
+    <BR><BR><BR>
+    <footer>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br>
+    	
+    	<i class="fa fa-copyright" style="font-size: 14px">Created by <a href="https://github.com/tcqefjm" target="_blank">fjm</a> & <a href="https://github.com/liuliuliuzy" target="_blank">lzy</a></i>
+    
+	</footer>
+</body>
+
+</html>

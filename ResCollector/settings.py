@@ -26,6 +26,7 @@ SECRET_KEY = '5ib!_tquhu^nv@yau9hus71p^j=n8(4ja%fhxr#hfmug3rii0+'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['*',] 
 
 
 # Application definition
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'BtCollector',
+    'MyWallpaper',
 ]
 
 MIDDLEWARE = [
@@ -119,5 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 os.environ['SCRAPY_SETTINGS_MODULE'] = 'mybt.settings'

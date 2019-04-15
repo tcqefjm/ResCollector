@@ -88,8 +88,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-import sys
-sys.path.append('C:/Users/13774/Desktop/ResCollector')
 
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ResCollector.settings'
