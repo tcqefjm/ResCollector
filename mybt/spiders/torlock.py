@@ -34,9 +34,11 @@ class TORLOCK(Spider):
 			item['size'] = result.xpath('./td[3]/text()').extract()[0]
 			item['seeder'] = result.xpath('./td[4]/text()').extract()[0]
 			item['leecher'] = result.xpath('./td[5]/text()').extract()[0]
+			#断种资源不抓取
 			if int(item['seeder']):
 				yield Request(url = item['source'], meta = {'item': item}, callback = self.secondParse)
-
+	
+	#需要跳转页面抓取其他信息
 	def secondParse(self, response):
 		item = response.meta['item']
 		item['link'] = response.xpath('//div[@style="float:right;padding-right:5px"]//a[1]/@href').extract()[0]

@@ -27,6 +27,7 @@ class Zooqle(Spider):
 		results = response.xpath('//table/tr')
 		for result in results:
 			item['name'] = result.xpath('string(./td[2]/a[@class=" small"])').extract()[0]
+			#该站断种资源灰色显示，断种资源不抓取
 			if not item['name']:
 				continue
 			item['source'] = result.xpath('./td[2]/a/@href').extract()

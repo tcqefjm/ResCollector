@@ -32,6 +32,7 @@ class LimeTorrents(Spider):
 			item['source'] = 'https://www.limetorrents.info' + item['source'][0]
 			yield Request(url = item['source'], meta = {'item': item}, callback = self.secondParse)
 	
+	#需要跳转页面抓取其他信息
 	def secondParse(self, response):
 		item = response.meta['item']
 		item['link'] = response.xpath('//div[@class="torrentinfo"]/div[@class="downloadarea"][2]//p/a/@href').extract()[0]
@@ -41,5 +42,6 @@ class LimeTorrents(Spider):
 		item['site'] = 'LimeTorrents'
 		item['search'] = self.search
 		item['cat'] = self.cat
+		#断种资源不抓取
 		if int(item['seeder']):
 			yield item

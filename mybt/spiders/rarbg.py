@@ -16,6 +16,7 @@ class RARBG(Spider):
 	
 	def __init__(self, search, cat = "all", **kwargs):
 		super(RARBG, self).__init__()
+		#调用查询接口需要申请token
 		self.start_urls = [
 			'https://torrentapi.org/pubapi_v2.php?get_token=get_token&app_id=mybt'
 		]
@@ -39,6 +40,7 @@ class RARBG(Spider):
 		})
 		yield Request(url = url, callback = self.secondParse)
 
+	#解析json格式的查询结果
 	def secondParse(self, response):
 		try:
 			item = MybtItem()
@@ -53,11 +55,13 @@ class RARBG(Spider):
 				item['site'] = 'RARBG'
 				item['search'] = self.search
 				item['cat'] = self.cat
+				#断种资源不抓取
 				if item['seeder']:
 					yield item
 		except KeyError:
 			pass
 
+#转换资源大小至可读性更好格式
 def sizeConvert(size):
 	size_map = (
 		(1 << 50, 'PB'),

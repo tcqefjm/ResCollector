@@ -35,5 +35,6 @@ class RUTOR(Spider):
 			item['site'] = 'RUTOR'
 			item['search'] = self.search
 			item['cat'] = self.cat
+			#断种资源不抓取
 			if int(item['seeder']):
 				yield item

@@ -24,6 +24,7 @@ class EZTV(Spider):
 			item['size'] = result.xpath('./td[4]/text()').extract()[0]
 			yield Request(url = item['source'], meta = {'item': item}, callback = self.secondParse)
 	
+	#需要跳转页面抓取其他信息
 	def secondParse(self, response):
 		item = response.meta['item']
 		item['seeder'] = response.xpath('//td[@style="padding-left: 5px;"]/span[1]/text()').extract()[0].replace(',', '')
@@ -31,5 +32,6 @@ class EZTV(Spider):
 		item['site'] = 'EZTV'
 		item['search'] = self.search
 		item['cat'] = self.cat
+		#断种资源不抓取
 		if int(item['seeder']):
 			yield item

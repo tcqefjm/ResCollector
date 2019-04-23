@@ -36,5 +36,6 @@ class ThePirateBay(Spider):
 			item['site'] = 'ThePirateBay'
 			item['search'] = self.search
 			item['cat'] = self.cat
+			#断种资源不抓取
 			if int(item['seeder']):
 				yield item

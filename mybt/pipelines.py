@@ -7,4 +7,5 @@
 
 class MybtPipeline(object):
     def process_item(self, item, spider):
+    	#每条记录保存到Django数据库
     	item.save()

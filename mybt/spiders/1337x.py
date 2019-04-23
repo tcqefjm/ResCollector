@@ -35,6 +35,7 @@ class LeetX(Spider):
 			item['source'] = 'https://1337x.to' + item['source'][0]
 			yield Request(url = item['source'], meta = {'item': item}, callback = self.secondParse)
 	
+	#需要跳转页面抓取其他信息
 	def secondParse(self, response):
 		item = response.meta['item']
 		detail = response.xpath('//div[@class="torrent-category-detail clearfix"]')
@@ -45,5 +46,6 @@ class LeetX(Spider):
 		item['site'] = '1337X'
 		item['search'] = self.search
 		item['cat'] = self.cat
+		#断种资源不抓取
 		if int(item['seeder']):
 			yield item

@@ -4,8 +4,9 @@ from random import randrange
 from urllib.request import urlretrieve
 
 def wallpaper(request):
+	#先读本地图片，后尝试更新图片
 	with open('./static/wallpaper.jpg', 'rb') as f:
-		image = f.read();
+		image = f.read()
 	Thread(target = getWallpaper, daemon = True).start()
 	return HttpResponse(image, content_type = 'image/jpeg')
 
